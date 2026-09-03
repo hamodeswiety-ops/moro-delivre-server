@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: moro-delivre-api
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: moro-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: moro-db
+          property: port
+      - key: DATABASE_USER
+        fromDatabase:
+          name: moro-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: moro-db
+          property: password
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: moro-db
+          property: database
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: 24h
+      - key: ADMIN_EMAIL
+        value: admin@moro.local
+      - key: ADMIN_PASSWORD
+        value: Admin@123
+
+databases:
+  - name: moro-db
+    engine: postgres
+    plan: free
+    ipAllowList: []
