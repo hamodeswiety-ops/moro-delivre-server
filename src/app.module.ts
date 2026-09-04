@@ -11,6 +11,10 @@ import { OrdersModule } from './modules/orders/orders.module';
 import { DeliveryModule } from './modules/delivery/delivery.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { PaymentsModule } from './modules/payments/payments.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
+import { RatingsModule } from './modules/ratings/ratings.module';
+import { SearchModule } from './modules/search/search.module';
+import { CouponsModule } from './modules/coupons/coupons.module';
 import { CommonModule } from './common/common.module';
 
 @Module({
@@ -29,6 +33,10 @@ import { CommonModule } from './common/common.module';
     PaymentsModule,
     DeliveryModule,
     AdminModule,
+    AnalyticsModule,
+    RatingsModule,
+    SearchModule,
+    CouponsModule,
   ],
   controllers: [HealthController],
 })

@@ -11,6 +11,7 @@ import {
 import { StoreEntity } from '../../stores/entities/store.entity';
 import { OrderItemEntity } from './order-item.entity';
 import { DeliveryEntity } from '../../delivery/entities/delivery.entity';
+import { RatingEntity } from '../../ratings/entities/rating.entity';
 
 export enum OrderStatus {
   PENDING = 'pending',
@@ -35,6 +36,9 @@ export class OrderEntity {
 
   @Column()
   customerName: string;
+
+  @Column()
+  customerEmail: string;
 
   @Column()
   customerPhone: string;
@@ -62,6 +66,9 @@ export class OrderEntity {
     nullable: true,
   })
   delivery: DeliveryEntity;
+
+  @OneToMany(() => RatingEntity, (rating) => rating.order)
+  ratings: RatingEntity[];
 
   @CreateDateColumn()
   createdAt: Date;

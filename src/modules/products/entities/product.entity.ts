@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { StoreEntity } from '../../stores/entities/store.entity';
 import { OrderItemEntity } from '../../orders/entities/order-item.entity';
+import { RatingEntity } from '../../ratings/entities/rating.entity';
 
 @Entity('products')
 export class ProductEntity {
@@ -40,6 +41,9 @@ export class ProductEntity {
 
   @OneToMany(() => OrderItemEntity, (item) => item.product)
   orderItems: OrderItemEntity[];
+
+  @OneToMany(() => RatingEntity, (rating) => rating.product)
+  ratings: RatingEntity[];
 
   @CreateDateColumn()
   createdAt: Date;
