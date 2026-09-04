@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { OrderEntity, OrderStatus } from './entities/order.entity';
 import { OrderItemEntity } from './entities/order-item.entity';
+import { NotificationService } from '../../common/notifications/notification.service';
 
 @Injectable()
 export class OrdersService {
@@ -11,6 +12,7 @@ export class OrdersService {
     private ordersRepository: Repository<OrderEntity>,
     @InjectRepository(OrderItemEntity)
     private orderItemsRepository: Repository<OrderItemEntity>,
+    private notificationService: NotificationService,
   ) {}
 
   async create(createOrderDto: any, storeId: string) {
@@ -56,7 +58,31 @@ export class OrdersService {
   async updateStatus(id: string, status: OrderStatus) {
     const order = await this.findById(id);
     order.status = status;
-    return this.ordersRepository.save(order);
+    const updated = await this.ordersRepository.save(order);
+
+    // Send notification based on status
+    if (status === OrderStatus.CONFIRMED) {
+      await this.notificationService.notifyOrderConfirmed(
+        'customer@example.com',
+        '+1234567890',
+        order.trackingNumber,
+      );
+    } else if (status === OrderStatus.IN_DELIVERY) {
+      await this.notificationService.notifyOrderShipped(
+        'customer@example.com',
+        '+1234567890',
+        order.trackingNumber,
+        order.trackingNumber,
+      );
+    } else if (status === OrderStatus.DELIVERED) {
+      await this.notificationService.notifyOrderDelivered(
+        'customer@example.com',
+        '+1234567890',
+        order.trackingNumber,
+      );
+    }
+
+    return updated;
   }
 
   async addItems(orderId: string, items: any[]) {

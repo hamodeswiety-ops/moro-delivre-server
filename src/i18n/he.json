@@ -1,0 +1,41 @@
+{
+  "common": {
+    "success": "הצליח",
+    "error": "שגיאה",
+    "notFound": "לא נמצא",
+    "unauthorized": "לא מורשה",
+    "forbidden": "אסור הגישה"
+  },
+  "auth": {
+    "registered": "המשתמש נרשם בהצלחה",
+    "loginSuccess": "התחברות הצליחה",
+    "invalidCredentials": "בيانات דخול לא נכונות",
+    "emailAlreadyRegistered": "דוא״ל כבר רשום",
+    "userInactive": "חשבון המשתמש אינו פעיל"
+  },
+  "orders": {
+    "orderCreated": "הזמנה נוצרה בהצלחה",
+    "orderNotFound": "ההזמנה לא נמצאה",
+    "orderStatusUpdated": "סטטוס ההזמנה עודכן",
+    "itemsAdded": "פריטים נוספו להזמנה"
+  },
+  "delivery": {
+    "deliveryCreated": "משלוח נוצר",
+    "driverAssigned": "נהג הוקצה בהצלחה",
+    "statusUpdated": "סטטוס המשלוח עודכן",
+    "locationUpdated": "המיקום עודכן"
+  },
+  "stores": {
+    "storeCreated": "חנות נוצרה בהצלחה",
+    "storeApproved": "החנות אושרה",
+    "storeRejected": "החנות נדחתה",
+    "storeSuspended": "החנות הושעתה"
+  },
+  "notifications": {
+    "orderConfirmed": "ההזמנה שלך אומתה",
+    "orderShipped": "ההזמנה שלך בדרך",
+    "orderDelivered": "ההזמנה שלך סופקה",
+    "newOrder": "הזמנה חדשה התקבלה",
+    "statusChanged": "הסטטוס שונה"
+  }
+}

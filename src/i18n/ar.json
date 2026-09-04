@@ -1,0 +1,41 @@
+{
+  "common": {
+    "success": "نجح",
+    "error": "خطأ",
+    "notFound": "غير موجود",
+    "unauthorized": "غير مرخص",
+    "forbidden": "ممنوع الوصول"
+  },
+  "auth": {
+    "registered": "تم تسجيل المستخدم بنجاح",
+    "loginSuccess": "تسجيل الدخول بنجاح",
+    "invalidCredentials": "بيانات دخول غير صحيحة",
+    "emailAlreadyRegistered": "البريد الإلكتروني مسجل بالفعل",
+    "userInactive": "حساب المستخدم غير نشط"
+  },
+  "orders": {
+    "orderCreated": "تم إنشاء الطلب بنجاح",
+    "orderNotFound": "الطلب غير موجود",
+    "orderStatusUpdated": "تم تحديث حالة الطلب",
+    "itemsAdded": "تمت إضافة العناصر إلى الطلب"
+  },
+  "delivery": {
+    "deliveryCreated": "تم إنشاء الشحنة",
+    "driverAssigned": "تم تعيين السائق بنجاح",
+    "statusUpdated": "تم تحديث حالة الشحنة",
+    "locationUpdated": "تم تحديث الموقع"
+  },
+  "stores": {
+    "storeCreated": "تم إنشاء المتجر بنجاح",
+    "storeApproved": "تمت الموافقة على المتجر",
+    "storeRejected": "تم رفض المتجر",
+    "storeSuspended": "تم إيقاف المتجر"
+  },
+  "notifications": {
+    "orderConfirmed": "تم تأكيد طلبك",
+    "orderShipped": "طلبك في الطريق",
+    "orderDelivered": "تم تسليم طلبك",
+    "newOrder": "تم استلام طلب جديد",
+    "statusChanged": "تم تغيير الحالة"
+  }
+}

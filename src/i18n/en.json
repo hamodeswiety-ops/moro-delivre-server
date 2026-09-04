@@ -1,0 +1,41 @@
+{
+  "common": {
+    "success": "Success",
+    "error": "Error",
+    "notFound": "Not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden"
+  },
+  "auth": {
+    "registered": "User registered successfully",
+    "loginSuccess": "Login successful",
+    "invalidCredentials": "Invalid email or password",
+    "emailAlreadyRegistered": "Email already registered",
+    "userInactive": "User account is inactive"
+  },
+  "orders": {
+    "orderCreated": "Order created successfully",
+    "orderNotFound": "Order not found",
+    "orderStatusUpdated": "Order status updated",
+    "itemsAdded": "Items added to order"
+  },
+  "delivery": {
+    "deliveryCreated": "Delivery created",
+    "driverAssigned": "Driver assigned successfully",
+    "statusUpdated": "Delivery status updated",
+    "locationUpdated": "Location updated"
+  },
+  "stores": {
+    "storeCreated": "Store created successfully",
+    "storeApproved": "Store approved",
+    "storeRejected": "Store rejected",
+    "storeSuspended": "Store suspended"
+  },
+  "notifications": {
+    "orderConfirmed": "Your order has been confirmed",
+    "orderShipped": "Your order is on its way",
+    "orderDelivered": "Your order has been delivered",
+    "newOrder": "New order received",
+    "statusChanged": "Status has been changed"
+  }
+}
