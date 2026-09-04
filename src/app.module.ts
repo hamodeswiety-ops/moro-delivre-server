@@ -10,6 +10,7 @@ import { ProductsModule } from './modules/products/products.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { DeliveryModule } from './modules/delivery/delivery.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 import { CommonModule } from './common/common.module';
 
 @Module({
@@ -25,6 +26,7 @@ import { CommonModule } from './common/common.module';
     StoresModule,
     ProductsModule,
     OrdersModule,
+    PaymentsModule,
     DeliveryModule,
     AdminModule,
   ],
