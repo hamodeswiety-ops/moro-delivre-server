@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banar Home Decor - بنار ديكور البيت</title>
+  <style>
+    :root {
+      --primary: #667eea;
+      --secondary: #764ba2;
+      --accent: #f093fb;
+      --light: #f5f7ff;
+      --dark: #1a1a2e;
+      --text: #333;
+      --border: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    .navbar {
+      background: white;
+      padding: 15px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-menu a:hover { color: var(--primary); }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .hero {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .stat-number {
+      font-size: 2.5em;
+      color: var(--primary);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .stat-label { color: #666; }
+
+    .section {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-size: 2em;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 15px;
+    }
+
+    /* Designer */
+    .designer {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .room-canvas {
+      width: 100%;
+      height: 500px;
+      border: 3px solid var(--border);
+      border-radius: 12px;
+      position: relative;
+      background: linear-gradient(180deg, #87CEEB 0%, #E0FFFF 50%, #D2B48C 100%);
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .room-canvas.dragging { cursor: grabbing; }
+
+    .controls-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .control-group {
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 8px;
+      background: var(--light);
+    }
+
+    .control-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .control-group select,
+    .control-group input[type="color"],
+    .control-group input[type="range"] {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      font-size: 1em;
+    }
+
+    .color-preview {
+      width: 100%;
+      height: 50px;
+      border-radius: 6px;
+      margin-top: 10px;
+      border: 2px solid var(--border);
+    }
+
+    .furniture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .furniture-btn {
+      padding: 15px;
+      border: 2px solid var(--border);
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.5em;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .furniture-btn:hover {
+      border-color: var(--primary);
+      background: var(--light);
+      transform: scale(1.1);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery-card:hover { transform: translateY(-8px); }
+
+    .gallery-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4em;
+    }
+
+    .gallery-content {
+      padding: 15px;
+    }
+
+    .gallery-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .gallery-desc {
+      color: #666;
+      font-size: 0.9em;
+      margin-bottom: 12px;
+    }
+
+    .gallery-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .rating { color: #ffc107; }
+
+    /* Buttons */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+
+    .btn-small {
+      padding: 8px 16px;
+      font-size: 0.9em;
+    }
+
+    /* Search */
+    .search-bar {
+      width: 100%;
+      padding: 15px;
+      font-size: 1em;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .search-bar:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .designer { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2em; }
+      .nav-menu { gap: 10px; }
+      .stats { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    }
+
+    .color-palette {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .palette-swatch {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .palette-swatch:hover {
+      border-color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .furniture-item {
+      position: absolute;
+      width: 80px;
+      height: 60px;
+      background: #8B7355;
+      border: 2px solid #654321;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      border-radius: 4px;
+      cursor: move;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .furniture-item:hover { opacity: 1; }
+    .furniture-item.dragging { opacity: 0.7; }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border: 2px solid var(--border);
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .tab-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active { display: block; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="logo">🏠 Banar</div>
+      <ul class="nav-menu">
+        <li><a href="#designer">تصميم</a></li>
+        <li><a href="#gallery">معرض</a></li>
+        <li><a href="#furniture">أثاث</a></li>
+        <li><a href="#colors">ألوان</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>🎨 بنار ديكور البيت</h1>
+      <p>صمم غرفتك الحلم بنقرة زر</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">منتج ديكور</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">تصميم جاهز</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">لوحة ألوان</div>
+      </div>
+    </div>
+
+    <!-- Designer Section -->
+    <div class="section" id="designer">
+      <h2>🎨 محرر الديكور</h2>
+      <div class="designer">
+        <div class="room-canvas" id="roomCanvas"></div>
+        <div class="controls-panel">
+          <div class="control-group">
+            <label>نوع الغرفة</label>
+            <select id="roomType" onchange="changeRoom(this.value)">
+              <option value="living">غرفة المعيشة</option>
+              <option value="bedroom">غرفة النوم</option>
+              <option value="kitchen">المطبخ</option>
+              <option value="bathroom">الحمام</option>
+              <option value="office">المكتب</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label>لون الجدران</label>
+            <input type="color" id="wallColor" value="#FFFFFF" onchange="updateDesign()">
+            <div class="color-preview" id="wallPreview"></div>
+          </div>
+
+          <div class="control-group">
+            <label>سطوع الإضاءة (%)</label>
+            <input type="range" id="brightness" min="30" max="100" value="80" onchange="updateDesign()">
+            <small id="brightValue">80%</small>
+          </div>
+
+          <div class="control-group">
+            <label>أضف أثاث</label>
+            <div class="furniture-grid">
+              <button class="furniture-btn" onclick="addFurniture('🛋️')">أريكة</button>
+              <button class="furniture-btn" onclick="addFurniture('🪑')">كرسي</button>
+              <button class="furniture-btn" onclick="addFurniture('🛏️')">سرير</button>
+              <button class="furniture-btn" onclick="addFurniture('📚')">رف</button>
+              <button class="furniture-btn" onclick="addFurniture('💡')">مصباح</button>
+              <button class="furniture-btn" onclick="addFurniture('🚪')">باب</button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="saveDesign()">💾 حفظ</button>
+          <button class="btn btn-secondary" onclick="clearRoom()">🔄 مسح</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="section" id="gallery">
+      <h2>🖼️ معرض التصاميم</h2>
+      <input type="text" class="search-bar" placeholder="ابحث عن التصاميم..." onkeyup="searchDesigns(this.value)">
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+
+    <!-- Furniture Section -->
+    <div class="section" id="furniture">
+      <h2>🛋️ معرض الأثاث</h2>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="filterFurniture('all', this)">الكل</button>
+        <button class="tab-btn" onclick="filterFurniture('seating', this)">أثاث جلوس</button>
+        <button class="tab-btn" onclick="filterFurniture('table', this)">طاولات</button>
+        <button class="tab-btn" onclick="filterFurniture('storage', this)">تخزين</button>
+        <button class="tab-btn" onclick="filterFurniture('lighting', this)">إضاءة</button>
+      </div>
+      <div class="gallery-grid" id="furnitureGrid"></div>
+    </div>
+
+    <!-- Colors Section -->
+    <div class="section" id="colors">
+      <h2>🎭 لوحات الألوان</h2>
+      <div class="gallery-grid" id="colorGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    let designs = JSON.parse(localStorage.getItem('designs') || '[]');
+    let currentDesign = null;
+    let furnitureCount = 0;
+
+    const furniture = [
+      { name: 'أريكة جلد حمراء', category: 'seating', price: 2500, rating: 4.8 },
+      { name: 'طاولة قهوة زجاجية', category: 'table', price: 800, rating: 4.6 },
+      { name: 'رف كتب خشبي', category: 'storage', price: 1200, rating: 4.7 },
+      { name: 'مصباح أرضي ذهبي', category: 'lighting', price: 600, rating: 4.9 },
+      { name: 'كرسي جلوس مريح', category: 'seating', price: 1500, rating: 4.5 },
+      { name: 'خزانة تخزين بيضاء', category: 'storage', price: 1800, rating: 4.4 },
+    ];
+
+    const palettes = [
+      { name: 'كلاسيكية دافئة', colors: ['#8B7355', '#D2B48C', '#CD853F', '#DEB887'], style: 'classic' },
+      { name: 'حداثة زرقاء', colors: ['#1E90FF', '#4169E1', '#00BFFF', '#87CEEB'], style: 'modern' },
+      { name: 'طبيعة خضراء', colors: ['#228B22', '#32CD32', '#00FF00', '#90EE90'], style: 'nature' },
+      { name: 'فخامة ذهبية', colors: ['#FFD700', '#FFA500', '#FF8C00', '#DAA520'], style: 'luxury' },
+      { name: 'بساطة حديثة', colors: ['#333333', '#808080', '#CCCCCC', '#FFFFFF'], style: 'minimalist' },
+      { name: 'شرقية دافئة', colors: ['#8B0000', '#DC143C', '#FF6347', '#FF4500'], style: 'oriental' },
+    ];
+
+    const roomBackgrounds = {
+      living: 'linear-gradient(180deg, #87CEEB 0%, #E0FFFF 50%, #D2B48C 100%)',
+      bedroom: 'linear-gradient(180deg, #FFB6C1 0%, #FFC0CB 50%, #E0B8D8 100%)',
+      kitchen: 'linear-gradient(180deg, #FFFACD 0%, #FFFFE0 50%, #F0E68C 100%)',
+      bathroom: 'linear-gradient(180deg, #B0E0E6 0%, #AFEEEE 50%, #E0FFFF 100%)',
+      office: 'linear-gradient(180deg, #D3D3D3 0%, #E8E8E8 50%, #F5F5F5 100%)',
+    };
+
+    function changeRoom(type) {
+      const canvas = document.getElementById('roomCanvas');
+      canvas.style.background = roomBackgrounds[type];
+    }
+
+    function updateDesign() {
+      const brightness = document.getElementById('brightness').value;
+      document.getElementById('brightValue').textContent = brightness + '%';
+      const canvas = document.getElementById('roomCanvas');
+      canvas.style.filter = `brightness(${brightness}%)`;
+    }
+
+    function addFurniture(emoji) {
+      const canvas = document.getElementById('roomCanvas');
+      const item = document.createElement('div');
+      item.className = 'furniture-item';
+      item.textContent = emoji;
+      item.style.left = Math.random() * 300 + 'px';
+      item.style.top = Math.random() * 300 + 'px';
+      item.draggable = true;
+
+      item.addEventListener('dragstart', (e) => {
+        item.classList.add('dragging');
+        canvas.classList.add('dragging');
+      });
+
+      item.addEventListener('dragend', () => {
+        item.classList.remove('dragging');
+        canvas.classList.remove('dragging');
+      });
+
+      canvas.appendChild(item);
+    }
+
+    document.getElementById('roomCanvas').addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    document.getElementById('roomCanvas').addEventListener('drop', (e) => {
+      e.preventDefault();
+      const dragging = document.querySelector('.furniture-item.dragging');
+      if (dragging) {
+        const rect = document.getElementById('roomCanvas').getBoundingClientRect();
+        dragging.style.left = (e.clientX - rect.left) + 'px';
+        dragging.style.top = (e.clientY - rect.top) + 'px';
+      }
+    });
+
+    function saveDesign() {
+      const name = prompt('أدخل اسم التصميم:');
+      if (name) {
+        const design = {
+          id: Date.now(),
+          name: name,
+          roomType: document.getElementById('roomType').value,
+          wallColor: document.getElementById('wallColor').value,
+          brightness: document.getElementById('brightness').value,
+          createdAt: new Date().toISOString(),
+        };
+        designs.push(design);
+        localStorage.setItem('designs', JSON.stringify(designs));
+        alert('✅ تم حفظ التصميم!');
+        loadGallery();
+      }
+    }
+
+    function clearRoom() {
+      document.querySelectorAll('.furniture-item').forEach(el => el.remove());
+    }
+
+    function loadGallery() {
+      const grid = document.getElementById('galleryGrid');
+      if (designs.length === 0) {
+        grid.innerHTML = '<p>لا توجد تصاميم محفوظة</p>';
+        return;
+      }
+
+      grid.innerHTML = designs.map(d => `
+        <div class="gallery-card">
+          <div class="gallery-image" style="background: ${d.wallColor};">🏠</div>
+          <div class="gallery-content">
+            <div class="gallery-title">${d.name}</div>
+            <div class="gallery-desc">غرفة ${d.roomType}</div>
+            <div class="gallery-footer">
+              <span class="rating">⭐ 4.5</span>
+              <button class="btn btn-primary btn-small" onclick="loadDesign(${d.id})">استخدم</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function searchDesigns(query) {
+      const filtered = designs.filter(d => d.name.includes(query));
+      const grid = document.getElementById('galleryGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p>لا توجد نتائج</p>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(d => `
+        <div class="gallery-card">
+          <div class="gallery-image" style="background: ${d.wallColor};">🏠</div>
+          <div class="gallery-content">
+            <div class="gallery-title">${d.name}</div>
+            <div class="gallery-desc">غرفة ${d.roomType}</div>
+            <div class="gallery-footer">
+              <span class="rating">⭐ 4.5</span>
+              <button class="btn btn-primary btn-small" onclick="loadDesign(${d.id})">استخدم</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function loadFurniture() {
+      const grid = document.getElementById('furnitureGrid');
+      grid.innerHTML = furniture.map(f => `
+        <div class="gallery-card">
+          <div class="gallery-image">🛋️</div>
+          <div class="gallery-content">
+            <div class="gallery-title">${f.name}</div>
+            <div class="gallery-desc">${f.price} ريال</div>
+            <div class="gallery-footer">
+              <span class="rating">⭐ ${f.rating}</span>
+              <button class="btn btn-primary btn-small">أضف</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function loadColors() {
+      const grid = document.getElementById('colorGrid');
+      grid.innerHTML = palettes.map(p => `
+        <div class="gallery-card">
+          <div class="gallery-image" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+            ${p.colors.map(c => `<div style="background: ${c};"></div>`).join('')}
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-title">${p.name}</div>
+            <div class="gallery-desc">أسلوب ${p.style}</div>
+            <button class="btn btn-primary btn-small" style="width: 100%;">استخدم</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterFurniture(category, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filtered = category === 'all' ? furniture : furniture.filter(f => f.category === category);
+      const grid = document.getElementById('furnitureGrid');
+      grid.innerHTML = filtered.map(f => `
+        <div class="gallery-card">
+          <div class="gallery-image">🛋️</div>
+          <div class="gallery-content">
+            <div class="gallery-title">${f.name}</div>
+            <div class="gallery-desc">${f.price} ريال</div>
+            <div class="gallery-footer">
+              <span class="rating">⭐ ${f.rating}</span>
+              <button class="btn btn-primary btn-small">أضف</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.addEventListener('load', () => {
+      loadGallery();
+      loadFurniture();
+      loadColors();
+      updateDesign();
+    });
+  </script>
+</body>
+</html>
