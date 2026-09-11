@@ -5,9 +5,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { StoreEntity } from '../../stores/entities/store.entity';
+import { DreamHomeProject } from '../../dream-homes/entities/dream-home-project.entity';
+import { HomeProject } from '../../home-projects/entities/home-project.entity';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -45,6 +48,12 @@ export class UserEntity {
   @OneToOne(() => StoreEntity, (store) => store.owner, { nullable: true })
   @JoinColumn()
   store: StoreEntity;
+
+  @OneToMany(() => DreamHomeProject, (project) => project.user, { nullable: true })
+  dreamProjects: DreamHomeProject[];
+
+  @OneToMany(() => HomeProject, (project) => project.user, { nullable: true })
+  homeProjects: HomeProject[];
 
   @CreateDateColumn()
   createdAt: Date;
