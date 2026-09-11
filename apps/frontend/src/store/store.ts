@@ -4,7 +4,7 @@ import projectsReducer from './projects/projectsSlice'
 import materialsReducer from './materials/materialsSlice'
 import uiReducer from './ui/uiSlice'
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     auth: authReducer,
     projects: projectsReducer,
@@ -13,5 +13,6 @@ export const store = configureStore({
   },
 })
 
+export { store }
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

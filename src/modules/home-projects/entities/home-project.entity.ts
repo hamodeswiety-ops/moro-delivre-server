@@ -8,7 +8,7 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { User } from '../../users/entities/user.entity';
+import { UserEntity } from '../../users/entities/user.entity';
 import { ProjectFloor } from './project-floor.entity';
 import { ProjectDesign } from './project-design.entity';
 
@@ -79,9 +79,9 @@ export class HomeProject {
     features: string[];
   };
 
-  @ManyToOne(() => User, (user) => user.homeProjects)
+  @ManyToOne(() => UserEntity, (user) => user.homeProjects)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  user: UserEntity;
 
   @Column()
   userId: string;
