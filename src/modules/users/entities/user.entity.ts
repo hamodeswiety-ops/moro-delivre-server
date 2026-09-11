@@ -9,7 +9,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { StoreEntity } from '../../stores/entities/store.entity';
-import { HomeProject } from '../../home-projects/entities/home-project.entity';
+import { DreamHomeProject } from '../../dream-homes/entities/dream-home-project.entity';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -48,8 +48,8 @@ export class UserEntity {
   @JoinColumn()
   store: StoreEntity;
 
-  @OneToMany(() => HomeProject, (project) => project.user, { nullable: true })
-  homeProjects: HomeProject[];
+  @OneToMany(() => DreamHomeProject, (project) => project.user, { nullable: true })
+  dreamProjects: DreamHomeProject[];
 
   @CreateDateColumn()
   createdAt: Date;

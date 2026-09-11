@@ -16,7 +16,7 @@ import { RatingsModule } from './modules/ratings/ratings.module';
 import { SearchModule } from './modules/search/search.module';
 import { CouponsModule } from './modules/coupons/coupons.module';
 import { CommonModule } from './common/common.module';
-import { HomeProjectsModule } from './modules/home-projects/home-projects.module';
+import { DreamHomesModule } from './modules/dream-homes/dream-homes.module';
 
 @Module({
   imports: [
@@ -38,7 +38,7 @@ import { HomeProjectsModule } from './modules/home-projects/home-projects.module
     RatingsModule,
     SearchModule,
     CouponsModule,
-    HomeProjectsModule,
+    DreamHomesModule,
   ],
   controllers: [HealthController],
 })
